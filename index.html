@@ -345,7 +345,7 @@
 <body>
 
     <div class="control-panel no-print">
-        <div class="score-display" id="scoreBox">النتيجة: 0 / 13 إجابة</div>
+        <div class="score-display" id="scoreBox">النتيجة: 0 / 17 إجابة</div>
         <button class="action-btn btn-check" onclick="checkAnswers()">✨ تصحيح الإجابات</button>
         <button class="action-btn btn-reset" onclick="resetAnswers()">🔄 مسح الكل</button>
         <button class="action-btn btn-print" onclick="window.print()">🖨️ طباعة / PDF</button>
@@ -384,7 +384,7 @@
             <div class="activity-card">
                 <div class="activity-header act-1">
                     <span>نشاط (1): جدول البيانات والقيمة المنزلية</span>
-                    <span>[3 درجات]</span>
+                    <span>[8 درجات]</span>
                 </div>
                 <div class="activity-body">
                     <p>أفرغ العدد <strong>(8,742,159)</strong> في جدول القيمة المنزلية:</p>
@@ -423,7 +423,7 @@
             <div class="activity-card">
                 <div class="activity-header act-2">
                     <span>نشاط (2): التمثيل البصري والتعبير بالصيغ</span>
-                    <span>[2 درجات]</span>
+                    <span>[5 درجات]</span>
                 </div>
                 <div class="activity-body">
                     <p>للعدد: <strong>(3,506,012)</strong></p>
@@ -467,7 +467,7 @@
             <div class="activity-card">
                 <div class="activity-header act-4">
                     <span>نشاط (4): رياضيات في حياتنا</span>
-                    <span>[2 درجات]</span>
+                    <span>[درجة واحدة]</span>
                 </div>
                 <div class="activity-body">
                     <p>🌲 زار محمية ضانا في العام الأول <strong>1,250,400</strong> سائح، وفي العام الثاني <strong>1,205,900</strong> سائح. أيهما أكبر؟</p>
@@ -511,7 +511,7 @@
 
             <div class="objectives-card" style="background: #e8f5e9; border-color: var(--accent-green);">
                 <h3 style="color: #2e7d32;">📌 إرشادات التصحيح:</h3>
-                <p style="font-size: 11.5px; color: #1b5e20;">تم تحديث الحقول لتتزامن مع الحفظ الفوري وإعادة الضبط الشاملة.</p>
+                <p style="font-size: 11.5px; color: #1b5e20;">تم تحديث الحقول وتصحيح مطابقة إجمالي الأسئلة ديناميكياً.</p>
             </div>
 
             <div class="activity-card"><div class="activity-header act-1"><span>إجابة نشاط (1)</span></div><div class="activity-body"><p>• القيمة المنزلية للرقم (7): <span class="answer-text">700,000</span></p></div></div>
@@ -535,7 +535,7 @@
 
         // Auto-save inputs using localStorage
         document.addEventListener("DOMContentLoaded", () => {
-            const allElements = document.querySelectorAll('.page:nth-of-type(1) .ans-input, .page:nth-of-type(1) .ans-select, .student-input');
+            const allElements = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled]), .page:nth-of-type(1) .ans-select, .student-input');
             
             allElements.forEach((el, index) => {
                 const savedVal = localStorage.getItem(`math_input_${index}`);
@@ -550,15 +550,24 @@
                     localStorage.setItem(`math_input_${index}`, el.value);
                 });
             });
+            
+            updateTotalCount();
         });
+
+        function updateTotalCount() {
+            const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled])');
+            const selects = document.querySelectorAll('.page:nth-of-type(1) .ans-select');
+            const total = inputs.length + selects.length;
+            const scoreBox = document.getElementById('scoreBox');
+            scoreBox.innerHTML = `النتيجة: 0 / ${total} إجابة`;
+        }
 
         function checkAnswers() {
             let score = 0;
             let totalInputs = 0;
 
-            const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input');
+            const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled])');
             inputs.forEach(input => {
-                if (input.disabled) return;
                 totalInputs++;
                 const userVal = cleanNumberStr(input.value);
                 const correctVal = cleanNumberStr(input.getAttribute('data-answer'));
@@ -601,12 +610,10 @@
 
         function resetAnswers() {
             if (confirm("هل أنت متأكد من مسح جميع الإجابات وإعادة التعيين؟")) {
-                const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input');
-                inputs.forEach((input, index) => {
-                    if (!input.disabled) {
-                        input.value = "";
-                        input.classList.remove('correct', 'incorrect');
-                    }
+                const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled])');
+                inputs.forEach(input => {
+                    input.value = "";
+                    input.classList.remove('correct', 'incorrect');
                 });
                 const selects = document.querySelectorAll('.page:nth-of-type(1) .ans-select');
                 selects.forEach(sel => {
@@ -615,12 +622,12 @@
                 });
                 
                 // Clear LocalStorage data for inputs
-                const allElements = document.querySelectorAll('.page:nth-of-type(1) .ans-input, .page:nth-of-type(1) .ans-select, .student-input');
+                const allElements = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled]), .page:nth-of-type(1) .ans-select, .student-input');
                 allElements.forEach((el, index) => {
                     localStorage.removeItem(`math_input_${index}`);
                 });
 
-                document.getElementById('scoreBox').innerHTML = "النتيجة: 0 / 13 إجابة";
+                updateTotalCount();
             }
         }
     </script>
