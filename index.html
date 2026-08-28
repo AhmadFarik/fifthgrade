@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+# Let's inspect the remaining incomplete HTML provided by the user, complete it robustly, 
+# add interactive auto-correction, score tracking, student inputs, and high-quality print styling.
+
+html_content = """<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دوسية الرياضيات التفاعلية - الصف الخامس الأساسي</title>
+    <title>دوسية الرياضيات التفاعلية - الصف الخامس الأساسي - الوحدة الأولى</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -18,7 +21,7 @@
             --text-dark: #2c3e50;
         }
 
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -43,8 +46,6 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             position: relative;
             border-radius: 4px;
-            page-break-after: always;
-            page-break-inside: avoid;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -96,13 +97,13 @@
         }
 
         .header-titles h1 {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
             margin-bottom: 2px;
         }
 
         .header-titles h2 {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 500;
             opacity: 0.9;
         }
@@ -111,10 +112,9 @@
             background: rgba(255, 255, 255, 0.25);
             padding: 6px 12px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
             border: 1px solid rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(4px);
             text-align: center;
         }
 
@@ -122,13 +122,24 @@
         .student-info-bar {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             background: #f1f8e9;
             border: 1.5px solid var(--accent-green);
             padding: 8px 15px;
             border-radius: 8px;
             margin-bottom: 12px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .student-input {
+            border: 1px solid #81c784;
+            background: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 12px;
             color: #2e7d32;
         }
 
@@ -143,7 +154,7 @@
 
         .objectives-card h3 {
             color: #e65100;
-            font-size: 14px;
+            font-size: 13.5px;
             margin-bottom: 5px;
             display: flex;
             align-items: center;
@@ -154,7 +165,7 @@
             display: flex;
             gap: 15px;
             list-style: none;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 600;
             color: #424242;
         }
@@ -177,7 +188,7 @@
             padding: 6px 12px;
             color: white;
             font-weight: 800;
-            font-size: 13px;
+            font-size: 12.5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -191,7 +202,7 @@
 
         .activity-body {
             padding: 10px 12px;
-            font-size: 12.5px;
+            font-size: 12px;
             line-height: 1.5;
         }
 
@@ -201,32 +212,63 @@
             border-collapse: collapse;
             margin-top: 6px;
             text-align: center;
-            font-size: 11.5px;
+            font-size: 11px;
         }
 
         .pv-table th, .pv-table td {
             border: 1px solid #b0bec5;
-            padding: 5px;
-        }
-
-        .pv-table th {
-            font-weight: 700;
+            padding: 4px;
         }
 
         .pv-table th.th-millions { background-color: #bbdefb; color: #0d47a1; }
         .pv-table th.th-thousands { background-color: #e1bee7; color: #4a148c; }
         .pv-table th.th-ones { background-color: #ffe0b2; color: #e65100; }
 
-        input[type="text"] {
+        input.ans-input {
             width: 95%;
             padding: 3px;
             border: 1px solid #b0bec5;
             border-radius: 4px;
             text-align: center;
             font-family: 'Tajawal', sans-serif;
-            font-size: 12px;
+            font-size: 11.5px;
             background-color: #fafafa;
+            transition: all 0.2s;
         }
+
+        input.ans-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background-color: #fff;
+            box-shadow: 0 0 4px rgba(30,136,229,0.3);
+        }
+
+        /* Correct / Incorrect Feedback States */
+        input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #e8f5e9 !important;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        input.incorrect {
+            border-color: var(--accent-red) !important;
+            background-color: #ffebee !important;
+            color: #c62828;
+        }
+
+        select.ans-select {
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #b0bec5;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 12px;
+            background: #fff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        select.correct { border-color: var(--accent-green); background: #e8f5e9; color: #2e7d32; }
+        select.incorrect { border-color: var(--accent-red); background: #ffebee; color: #c62828; }
 
         .blank-line {
             display: inline-block;
@@ -251,42 +293,75 @@
             border: 1px dotted #4caf50;
         }
 
+        /* Interactive Control Bar Panel */
+        .control-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 35px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            color: white;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(0,0,0,0.25);
+        }
+
+        .action-btn.btn-check {
+            background: linear-gradient(135deg, #43a047, #2e7d32);
+        }
+
+        .action-btn.btn-reset {
+            background: linear-gradient(135deg, #fb8c00, #e65100);
+        }
+
+        .action-btn.btn-print {
+            background: linear-gradient(135deg, #8e24aa, #6a1b9a);
+        }
+
+        .score-display {
+            font-weight: 900;
+            font-size: 14px;
+            color: var(--primary-dark-blue);
+            background: #e3f2fd;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid #90caf9;
+        }
+
         /* Footer */
         .page-footer {
             text-align: center;
-            font-size: 10.5px;
+            font-size: 10px;
             color: #78909c;
             border-top: 1px solid #cfd8dc;
-            padding-top: 8px;
+            padding-top: 6px;
             margin-top: auto;
             display: flex;
             justify-content: space-between;
-        }
-
-        /* Floating Action Print Button */
-        .print-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, #1e88e5, #1565c0);
-            color: white;
-            padding: 12px 22px;
-            border: none;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .print-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
         /* Print Media Styles */
@@ -299,14 +374,15 @@
                 box-shadow: none;
                 margin: 0;
                 width: 100%;
-                height: 100%;
+                min-height: 297mm;
                 border-radius: 0;
-                padding: 10mm;
+                padding: 12mm;
+                page-break-after: always;
             }
-            .no-print {
+            .control-panel, .no-print {
                 display: none !important;
             }
-            input[type="text"] {
+            input.ans-input {
                 border: 1px solid #90a4ae;
                 background-color: transparent;
             }
@@ -315,9 +391,19 @@
 </head>
 <body>
 
-    <button class="print-btn no-print" onclick="window.print()">
-        🖨️ طباعة الدوسية / حفظ PDF بدقة عالية
-    </button>
+    <!-- Floating Interactive Control Panel -->
+    <div class="control-panel no-print">
+        <div class="score-display" id="scoreBox">النتيجة: 0 / 10 درجات</div>
+        <button class="action-btn btn-check" onclick="checkAnswers()">
+            ✨ تصحيح الإجابات تلقائياً
+        </button>
+        <button class="action-btn btn-reset" onclick="resetAnswers()">
+            🔄 إحداثيات جديدة / مسح
+        </button>
+        <button class="action-btn btn-print" onclick="window.print()">
+            🖨️ طباعة الدوسية / PDF
+        </button>
+    </div>
 
     <!-- Page 1: Interactive Worksheet -->
     <div class="page">
@@ -328,20 +414,20 @@
                     <div class="school-logo">📐</div>
                     <div class="header-titles">
                         <h1>الوحدة الأولى: الدرس الأول - القيمة المنزلية ضمن الملايين</h1>
-                        <h2>مادة الرياضيات | الصف الخامس الأساسي</h2>
+                        <h2>مادة الرياضيات | الصف الخامس الأساسي - الفصل الدراسي الأول</h2>
                     </div>
                 </div>
                 <div class="badge-rating">
                     إعداد المعلم: أحمد فرخ<br>
-                    ⭐⭐⭐⭐⭐ تقييم إثرائي
+                    ⭐⭐⭐⭐⭐ تقييم إثرائي تفاعلي
                 </div>
             </div>
 
             <!-- Student Info Bar -->
             <div class="student-info-bar">
-                <span>اسم الطالب/ة: .....................................................</span>
-                <span>الشعبة: ( ..... )</span>
-                <span>التاريخ: ..... / ..... / 2026م</span>
+                <span>اسم الطالب/ة: <input type="text" id="studentNameInput" class="student-input" style="width: 220px;" placeholder="اكتب اسمك الثلاثي هنا..."></span>
+                <span>الشعبة: <input type="text" id="studentSectionInput" class="student-input" style="width: 60px;" placeholder="مثال: 5أ"></span>
+                <span>التاريخ: <input type="text" id="studentDateInput" class="student-input" style="width: 100px;" value="2026/09/01"></span>
             </div>
 
             <!-- Objectives -->
@@ -350,7 +436,7 @@
                 <ul class="objectives-list">
                     <li>يحدد القيمة المنزلية لرقم في عدد ضمن الملايين.</li>
                     <li>يقرأ الأعداد ضمن الملايين ويكتبها بالصيغ (القياسية، اللفظية، التحليلية).</li>
-                    <li>يقارن الأعداد الكبيرة ويرتبها بثقة.</li>
+                    <li>يقارن الأعداد الكبيرة ويرتبها بدقة متناهية.</li>
                 </ul>
             </div>
 
@@ -377,34 +463,34 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" placeholder="-" disabled></td>
-                                <td><input type="text" placeholder="-" disabled></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
-                                <td><input type="text"></td>
+                                <td><input type="text" class="ans-input" data-answer="-" value="-" disabled style="background:#eceff1;"></td>
+                                <td><input type="text" class="ans-input" data-answer="-" value="-" disabled style="background:#eceff1;"></td>
+                                <td><input type="text" class="ans-input" data-answer="8" placeholder="?"></td>
+                                <td><input type="text" class="ans-input" data-answer="7" placeholder="?"></td>
+                                <td><input type="text" class="ans-input" data-answer="4" placeholder="?"></td>
+                                <td><input type="text" class="ans-input" data-answer="2" placeholder="?"></td>
+                                <td><input type="text" class="ans-input" data-answer="1" placeholder="?"></td>
+                                <td><input type="text" class="ans-input" data-answer="5" placeholder="?"></td>
+                                <td><input type="text" class="ans-input" data-answer="9" placeholder="?"></td>
                             </tr>
                         </tbody>
                     </table>
-                    <p style="margin-top: 8px;">• القيمة المنزلية للرقم <strong>(7)</strong> الذي يقع في منزلة مئات الألوف هي: <span class="blank-line"></span></p>
+                    <p style="margin-top: 6px;">• القيمة المنزلية للرقم <strong>(7)</strong> الذي يقع في منزلة مئات الألوف هي: <input type="text" class="ans-input" data-answer="700000" style="width: 180px; display:inline-block;" placeholder="اكتب العدد هنا..."></p>
                 </div>
             </div>
 
             <!-- Activity 2: Visual Representation & Forms -->
             <div class="activity-card">
                 <div class="activity-header act-2">
-                    <span>نشاط (2): التمثيل البصري والتعبير بالصيغ [تمثيل بصري]</span>
+                    <span>نشاط (2): التمثيل البصري والتعبير بالصيغ [تحليل العدد]</span>
                     <span>[2 درجات]</span>
                 </div>
                 <div class="activity-body">
-                    <p>اكتب العدد الممثل بالصيغ المختلفة للعدد: <strong>(3,506,012)</strong></p>
-                    <p style="margin-top: 5px;">• <strong>الصيغة اللفظية:</strong> <span class="blank-line" style="min-width: 80%;"></span></p>
-                    <p style="margin-top: 6px;">• <strong>الصيغة التحليلية:</strong></p>
+                    <p>اكتب أجزاء الصيغة التحليلية للعدد: <strong>(3,506,012)</strong></p>
+                    <p style="margin-top: 4px;">• <strong>الصيغة اللفظية:</strong> <input type="text" class="ans-input" data-answer="ثلاثة ملايين وخمسماية وستة آلاف واثنا عشر" style="width: 75%; display:inline-block;" placeholder="اكتب الصيغة اللفظية..."></p>
+                    <p style="margin-top: 5px;">• <strong>الصيغة التحليلية:</strong></p>
                     <p style="direction: ltr; text-align: right; margin-top: 4px; font-weight: bold; color: var(--secondary-purple);">
-                        3,506,012 = 2 + <input type="text" style="width: 50px;"> + 0 + <input type="text" style="width: 70px;"> + 0 + <input type="text" style="width: 90px;"> + <input type="text" style="width: 100px;">
+                        3,506,012 = 2 + <input type="text" class="ans-input" data-answer="10" style="width: 55px;" placeholder="عشرات"> + 0 + <input type="text" class="ans-input" data-answer="6000" style="width: 70px;" placeholder="آحاد آلاف"> + 0 + <input type="text" class="ans-input" data-answer="500000" style="width: 85px;" placeholder="مئات آلاف"> + <input type="text" class="ans-input" data-answer="3000000" style="width: 95px;" placeholder="ملايين">
                     </p>
                 </div>
             </div>
@@ -412,14 +498,28 @@
             <!-- Activity 3: Compare & Order -->
             <div class="activity-card">
                 <div class="activity-header act-3">
-                    <span>نشاط (3): المقارنة والترتيب [مقارنة وترتيب]</span>
+                    <span>نشاط (3): المقارنة والترتيب [مقارنة أعداد]</span>
                     <span>[2 درجات]</span>
                 </div>
                 <div class="activity-body">
-                    <p>أولاً: ضع رمز المقارنة المناسب <strong>(&gt; ، &lt; ، =)</strong> في الدائرة:</p>
-                    <div style="display: flex; justify-content: space-around; margin: 8px 0; font-weight: bold;">
-                        <div>5,412,900 <span style="border: 1px solid #ff9800; padding: 2px 10px; border-radius: 50%;"></span> 5,421,000</div>
-                        <div>9,000,000 <span style="border: 1px solid #ff9800; padding: 2px 10px; border-radius: 50%;"></span> 8,999,999</div>
+                    <p>أولاً: اختر رمز المقارنة المناسب <strong>(&gt; ، &lt; ، =)</strong> في كل فراغ:</p>
+                    <div style="display: flex; justify-content: space-around; margin: 6px 0; font-weight: bold; align-items: center;">
+                        <div>5,412,900 
+                            <select class="ans-select" data-answer="<">
+                                <option value="">اختر</option>
+                                <option value=">">&gt;</option>
+                                <option value="<">&lt;</option>
+                                <option value="=">=</option>
+                            </select> 
+                        5,421,000</div>
+                        <div>9,000,000 
+                            <select class="ans-select" data-answer=">">
+                                <option value="">اختر</option>
+                                <option value=">">&gt;</option>
+                                <option value="<">&lt;</option>
+                                <option value="=">=</option>
+                            </select> 
+                        8,999,999</div>
                     </div>
                 </div>
             </div>
@@ -431,8 +531,8 @@
                     <span>[2 درجات]</span>
                 </div>
                 <div class="activity-body">
-                    <p>🌲 زار محمية ضانا الطبيعية في العام الأول <strong>1,250,400</strong> سائح، وفي العام الثاني زارها <strong>1,205,900</strong> سائح. في أي العامين كان عدد الزوار أكبر؟ قارن بين العددين للتحقق.</p>
-                    <p style="margin-top: 6px;">خطوات المقارنة والنتيجة: <span class="blank-line" style="min-width: 75%;"></span></p>
+                    <p>🌲 زار محمية ضانا في العام الأول <strong>1,250,400</strong> سائح، وفي العام الثاني <strong>1,205,900</strong> سائح. في أي العامين كان عدد الزوار أكبر؟</p>
+                    <p style="margin-top: 4px;">الإجابة مع التبرير: <input type="text" class="ans-input" data-answer="العام الأول" style="width: 70%; display:inline-block;" placeholder="مثال: العام الأول لأن مئات الألوف أكبر..."></p>
                 </div>
             </div>
 
@@ -443,14 +543,14 @@
                     <span>[درجة واحدة]</span>
                 </div>
                 <div class="activity-body">
-                    <p>🧠 <strong>من أكون؟</strong> أنا عدد كلي أقع بين المليونين والثلاثة ملايين (2,000,000 و 3,000,000). رقم عشراتي أكبر من رقم آحادي بمقدار 5، ومجموع أرقامي الكلي يساوي 10، وجميع منازلي الأخرى أصفار باستثناء منزلة المئات ومنازل الملايين.</p>
-                    <p style="margin-top: 6px;">العدد هو: <span class="blank-line" style="min-width: 200px;"></span></p>
+                    <p>🧠 <strong>من أكون؟</strong> عدد بين 2,000,000 و 3,000,000. رقم عشراتي أكبر من آحادي بمقدار 5، مجموع أرقامي الكلي 10، ومنازلي الأخرى أصفار ما عدا المئات والملايين.</p>
+                    <p style="margin-top: 4px;">العدد هو: <input type="text" class="ans-input" data-answer="2,005,032" style="width: 160px; display:inline-block;" placeholder="اكتب العدد هنا..."></p>
                 </div>
             </div>
         </div>
 
         <div class="page-footer">
-            <span>صفحة 1 من 2 - ورقة عمل تفاعلية</span>
+            <span>صفحة 1 من 2 - ورقة عمل تفاعلية ذكية</span>
             <span>المعلم: أحمد فرخ - مبحث الرياضيات</span>
             <span>الصف الخامس الأساسي</span>
         </div>
@@ -476,9 +576,9 @@
 
             <!-- Guidelines Box -->
             <div class="objectives-card" style="background: #e8f5e9; border-color: var(--accent-green);">
-                <h3 style="color: #2e7d32;">📌 إرشادات التصحيح والتغذية الراجعة:</h3>
+                <h3 style="color: #2e7d32;">📌 إرشادات التصحيح والتغذية الراجعة الذكية:</h3>
                 <p style="font-size: 11.5px; color: #1b5e20;">
-                    تم إعداد هذا النموذج لتقديم إجابات نموذجية دقيقة لدعم التقييم التكويني. يُنصح بالتركيز على فهم الطالب للقيمة المنزلية والتمييز بين المنازل عند المقارنة والترتيب.
+                    تم تحديث هذه الدوسية لتشمل خاصية التصحيح الفوري وإدخال بيانات الطالب، مع تنسيق هندسي دقيق متوافق تماماً مع معايير الطباعة والتحويل المباشر إلى ملف PDF عالي الجودة.
                 </p>
             </div>
 
@@ -509,7 +609,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p style="margin-top: 8px;">• القيمة المنزلية للرقم (7) هي: <span class="answer-text">700,000 (سبعمائة ألف)</span></p>
+                    <p style="margin-top: 6px;">• القيمة المنزلية للرقم (7) هي: <span class="answer-text">700,000 (سبعمائة ألف)</span></p>
                 </div>
             </div>
 
@@ -520,5 +620,130 @@
                 </div>
                 <div class="activity-body">
                     <p>• <strong>الصيغة اللفظية:</strong> <span class="answer-text">ثلاثة ملايين وخمسُمائة وستة آلاف واثنا عشر.</span></p>
-                    <p style="margin-top: 6px;">• <strong>الصيغة التحليلية:</strong></p>
-                    <
+                    <p style="margin-top: 5px;">• <strong>الصيغة التحليلية:</strong> <span class="answer-text">3,506,012 = 2 + 10 + 0 + 6,000 + 0 + 500,000 + 3,000,000</span></p>
+                </div>
+            </div>
+
+            <!-- Solution 3 -->
+            <div class="activity-card">
+                <div class="activity-header act-3">
+                    <span>إجابة نشاط (3): المقارنة والترتيب</span>
+                </div>
+                <div class="activity-body">
+                    <p>• المقارنة الأولى: <span class="answer-text">5,412,900 &lt; 5,421,000</span> (لأن عدد الآلاف في الثاني أكبر).</p>
+                    <p style="margin-top: 4px;">• المقارنة الثانية: <span class="answer-text">9,000,000 &gt; 8,999,999</span> (عدد الملايين في الأول أكبر).</p>
+                </div>
+            </div>
+
+            <!-- Solution 4 -->
+            <div class="activity-card">
+                <div class="activity-header act-4">
+                    <span>إجابة نشاط (4): مسألة حياتية واقعية</span>
+                </div>
+                <div class="activity-body">
+                    <p>• <span class="answer-text">عدد الزوار في العام الأول (1,250,400) أكبر من العام الثاني (1,205,900)</span>؛ لأن منزلة عشرات الألوف في العام الأول (5) أكبر من عشرات الألوف في العام الثاني (0).</p>
+                </div>
+            </div>
+
+            <!-- Solution 5 -->
+            <div class="activity-card">
+                <div class="activity-header act-5">
+                    <span>إجابة نشاط (5): سؤال التحدي والإثراء</span>
+                </div>
+                <div class="activity-body">
+                    <p>• العدد هو: <span class="answer-text">2,005,032</span> (مجموع الأرقام: 2 + 0 + 0 + 5 + 0 + 3 + 2 = 10، ورقم العشرات 3 أكبر من الآحاد 2 بمقدار 5).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>صفحة 2 من 2 - دليل المعلم ونموذج الحلول</span>
+            <span>المعلم: أحمد فرخ - مبحث الرياضيات</span>
+            <span>الصف الخامس الأساسي</span>
+        </div>
+    </div>
+
+    <!-- JavaScript for Auto-Correction & Score Calculation -->
+    <script>
+        function cleanNumberStr(str) {
+            if (!str) return "";
+            return str.trim().replace(/[\s,،]/g, "");
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            let totalInputs = 0;
+
+            // Check text inputs
+            const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input');
+            inputs.forEach(input => {
+                if (input.disabled) return;
+                totalInputs++;
+                const userVal = cleanNumberStr(input.value);
+                const correctVal = cleanNumberStr(input.getAttribute('data-answer'));
+
+                if (userVal !== "" && (userVal === correctVal || userVal.toLowerCase() === correctVal.toLowerCase())) {
+                    input.classList.remove('incorrect');
+                    input.classList.add('correct');
+                    score++;
+                } else {
+                    input.classList.remove('correct');
+                    input.classList.add('incorrect');
+                }
+            });
+
+            // Check selects
+            const selects = document.querySelectorAll('.page:nth-of-type(1) .ans-select');
+            selects.forEach(sel => {
+                totalInputs++;
+                const userVal = sel.value.trim();
+                const correctVal = sel.getAttribute('data-answer').trim();
+
+                if (userVal !== "" && userVal === correctVal) {
+                    sel.classList.remove('incorrect');
+                    sel.classList.add('correct');
+                    score++;
+                } else {
+                    sel.classList.remove('correct');
+                    sel.classList.add('incorrect');
+                }
+            });
+
+            // Normalize score to 10 scale approx or actual items
+            const scoreBox = document.getElementById('scoreBox');
+            scoreBox.innerHTML = `🌟 نتيجتك: ${score} / ${totalInputs} إجابة صحيحة`;
+            
+            if (score === totalInputs) {
+                alert("🎉 أبدعت يا قهرمان! جميع إجاباتك صحيحة 100%.");
+            } else {
+                alert(`⚠️ لقد أجبت بشكل صحيح على ${score} من أصل ${totalInputs}. الإجابات الخاطئة مظللة باللون الأحمر، راجعها حاول مرة أخرى!`);
+            }
+        }
+
+        function resetAnswers() {
+            const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input');
+            inputs.forEach(input => {
+                if (!input.disabled) {
+                    input.value = "";
+                    input.classList.remove('correct', 'incorrect');
+                }
+            });
+            const selects = document.querySelectorAll('.page:nth-of-type(1) .ans-select');
+            selects.forEach(sel => {
+                sel.value = "";
+                sel.classList.remove('correct', 'incorrect');
+            });
+            document.getElementById('scoreBox').innerHTML = "النتيجة: 0 / 10 درجات";
+        }
+    </script>
+</body>
+</html>
+"""
+
+with open("interactive_math_worksheet.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+# Convert HTML to PDF using Weasyprint
+from weasyprint import HTML
+HTML(filename="interactive_math_worksheet.html").write_pdf("interactive_math_worksheet.pdf")
+print("PDF generated successfully.")
