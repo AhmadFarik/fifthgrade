@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دوسية الرياضيات التفاعلية - الصف الخامس الأساسي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e88e5;
+            --primary-dark-blue: #1565c0;
+            --secondary-purple: #8e24aa;
+            --accent-orange: #fb8c00;
+            --accent-green: #43a047;
+            --accent-red: #e53935;
+            --bg-light: #eceff1;
+            --card-bg: #ffffff;
+            --text-dark: #2c3e50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding: 20px 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* A4 Page Dimensions & Setup */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm;
+            margin: 0 auto 25px auto;
+            background: var(--card-bg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            border-radius: 4px;
+            page-break-after: always;
+            page-break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Ribbon Banner Header */
+        .ribbon-header {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ribbon-header::before, .ribbon-header::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            border-top: 8px solid #0d47a1;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+        }
+        .ribbon-header::before { right: 15px; }
+        .ribbon-header::after { left: 15px; }
+
+        .logo-badge-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .school-logo {
+            width: 45px;
+            height: 45px;
+            background: white;
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header-titles h1 {
+            font-size: 20px;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+
+        .header-titles h2 {
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .badge-rating {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            text-align: center;
+        }
+
+        /* Student Information Bar */
+        .student-info-bar {
+            display: flex;
+            justify-content: space-between;
+            background: #f1f8e9;
+            border: 1.5px solid var(--accent-green);
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        /* Objectives Card */
+        .objectives-card {
+            background: #fff8e1;
+            border: 1.5px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 12px;
+        }
+
+        .objectives-card h3 {
+            color: #e65100;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .objectives-list {
+            display: flex;
+            gap: 15px;
+            list-style: none;
+            font-size: 12px;
+            font-weight: 600;
+            color: #424242;
+        }
+
+        .objectives-list li::before {
+            content: "🎯 ";
+        }
+
+        /* Activity Cards Styling */
+        .activity-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #cfd8dc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .activity-header {
+            padding: 6px 12px;
+            color: white;
+            font-weight: 800;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .act-1 { background: linear-gradient(90deg, var(--primary-blue), #42a5f5); }
+        .act-2 { background: linear-gradient(90deg, var(--secondary-purple), #ab47bc); }
+        .act-3 { background: linear-gradient(90deg, var(--accent-orange), #ffa726); }
+        .act-4 { background: linear-gradient(90deg, var(--accent-green), #66bb6a); }
+        .act-5 { background: linear-gradient(90deg, var(--accent-red), #ef5350); }
+
+        .activity-body {
+            padding: 10px 12px;
+            font-size: 12.5px;
+            line-height: 1.5;
+        }
+
+        /* Place Value Table */
+        .pv-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            text-align: center;
+            font-size: 11.5px;
+        }
+
+        .pv-table th, .pv-table td {
+            border: 1px solid #b0bec5;
+            padding: 5px;
+        }
+
+        .pv-table th {
+            font-weight: 700;
+        }
+
+        .pv-table th.th-millions { background-color: #bbdefb; color: #0d47a1; }
+        .pv-table th.th-thousands { background-color: #e1bee7; color: #4a148c; }
+        .pv-table th.th-ones { background-color: #ffe0b2; color: #e65100; }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 3px;
+            border: 1px solid #b0bec5;
+            border-radius: 4px;
+            text-align: center;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 12px;
+            background-color: #fafafa;
+        }
+
+        .blank-line {
+            display: inline-block;
+            border-bottom: 1.5px dashed #78909c;
+            min-width: 120px;
+            height: 18px;
+            vertical-align: middle;
+            margin: 0 4px;
+        }
+
+        /* Answer Key Specific Styling */
+        .answer-key-header {
+            background: linear-gradient(135deg, var(--accent-green), #00695c) !important;
+        }
+
+        .answer-text {
+            color: #1b5e20;
+            font-weight: 800;
+            background-color: #e8f5e9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px dotted #4caf50;
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            font-size: 10.5px;
+            color: #78909c;
+            border-top: 1px solid #cfd8dc;
+            padding-top: 8px;
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Floating Action Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            color: white;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Print Media Styles */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding: 10mm;
+            }
+            .no-print {
+                display: none !important;
+            }
+            input[type="text"] {
+                border: 1px solid #90a4ae;
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-btn no-print" onclick="window.print()">
+        🖨️ طباعة الدوسية / حفظ PDF بدقة عالية
+    </button>
+
+    <!-- Page 1: Interactive Worksheet -->
+    <div class="page">
+        <div>
+            <!-- Header Banner -->
+            <div class="ribbon-header">
+                <div class="logo-badge-container">
+                    <div class="school-logo">📐</div>
+                    <div class="header-titles">
+                        <h1>الوحدة الأولى: الدرس الأول - القيمة المنزلية ضمن الملايين</h1>
+                        <h2>مادة الرياضيات | الصف الخامس الأساسي</h2>
+                    </div>
+                </div>
+                <div class="badge-rating">
+                    إعداد المعلم: أحمد فرخ<br>
+                    ⭐⭐⭐⭐⭐ تقييم إثرائي
+                </div>
+            </div>
+
+            <!-- Student Info Bar -->
+            <div class="student-info-bar">
+                <span>اسم الطالب/ة: .....................................................</span>
+                <span>الشعبة: ( ..... )</span>
+                <span>التاريخ: ..... / ..... / 2026م</span>
+            </div>
+
+            <!-- Objectives -->
+            <div class="objectives-card">
+                <h3>🎯 أهداف الدرس المعيارية:</h3>
+                <ul class="objectives-list">
+                    <li>يحدد القيمة المنزلية لرقم في عدد ضمن الملايين.</li>
+                    <li>يقرأ الأعداد ضمن الملايين ويكتبها بالصيغ (القياسية، اللفظية، التحليلية).</li>
+                    <li>يقارن الأعداد الكبيرة ويرتبها بثقة.</li>
+                </ul>
+            </div>
+
+            <!-- Activity 1: Data Table & Place Value -->
+            <div class="activity-card">
+                <div class="activity-header act-1">
+                    <span>نشاط (1): جدول البيانات والقيمة المنزلية [جدول بيانات]</span>
+                    <span>[3 درجات]</span>
+                </div>
+                <div class="activity-body">
+                    <p>يبيّن الجدول التالي عدد سكان إحدى الدول. أفرغ العدد <strong>(8,742,159)</strong> في جدول القيمة المنزلية، ثم أجب عن السؤال التالي:</p>
+                    <table class="pv-table">
+                        <thead>
+                            <tr>
+                                <th colspan="3" class="th-millions">دورة الملايين</th>
+                                <th colspan="3" class="th-thousands">دورة الألوف</th>
+                                <th colspan="3" class="th-ones">دورة الآحاد</th>
+                            </tr>
+                            <tr>
+                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
+                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
+                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" placeholder="-" disabled></td>
+                                <td><input type="text" placeholder="-" disabled></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                                <td><input type="text"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 8px;">• القيمة المنزلية للرقم <strong>(7)</strong> الذي يقع في منزلة مئات الألوف هي: <span class="blank-line"></span></p>
+                </div>
+            </div>
+
+            <!-- Activity 2: Visual Representation & Forms -->
+            <div class="activity-card">
+                <div class="activity-header act-2">
+                    <span>نشاط (2): التمثيل البصري والتعبير بالصيغ [تمثيل بصري]</span>
+                    <span>[2 درجات]</span>
+                </div>
+                <div class="activity-body">
+                    <p>اكتب العدد الممثل بالصيغ المختلفة للعدد: <strong>(3,506,012)</strong></p>
+                    <p style="margin-top: 5px;">• <strong>الصيغة اللفظية:</strong> <span class="blank-line" style="min-width: 80%;"></span></p>
+                    <p style="margin-top: 6px;">• <strong>الصيغة التحليلية:</strong></p>
+                    <p style="direction: ltr; text-align: right; margin-top: 4px; font-weight: bold; color: var(--secondary-purple);">
+                        3,506,012 = 2 + <input type="text" style="width: 50px;"> + 0 + <input type="text" style="width: 70px;"> + 0 + <input type="text" style="width: 90px;"> + <input type="text" style="width: 100px;">
+                    </p>
+                </div>
+            </div>
+
+            <!-- Activity 3: Compare & Order -->
+            <div class="activity-card">
+                <div class="activity-header act-3">
+                    <span>نشاط (3): المقارنة والترتيب [مقارنة وترتيب]</span>
+                    <span>[2 درجات]</span>
+                </div>
+                <div class="activity-body">
+                    <p>أولاً: ضع رمز المقارنة المناسب <strong>(&gt; ، &lt; ، =)</strong> في الدائرة:</p>
+                    <div style="display: flex; justify-content: space-around; margin: 8px 0; font-weight: bold;">
+                        <div>5,412,900 <span style="border: 1px solid #ff9800; padding: 2px 10px; border-radius: 50%;"></span> 5,421,000</div>
+                        <div>9,000,000 <span style="border: 1px solid #ff9800; padding: 2px 10px; border-radius: 50%;"></span> 8,999,999</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity 4: Real Life Problem -->
+            <div class="activity-card">
+                <div class="activity-header act-4">
+                    <span>نشاط (4): رياضيات في حياتنا [مسألة حياتية واقعية]</span>
+                    <span>[2 درجات]</span>
+                </div>
+                <div class="activity-body">
+                    <p>🌲 زار محمية ضانا الطبيعية في العام الأول <strong>1,250,400</strong> سائح، وفي العام الثاني زارها <strong>1,205,900</strong> سائح. في أي العامين كان عدد الزوار أكبر؟ قارن بين العددين للتحقق.</p>
+                    <p style="margin-top: 6px;">خطوات المقارنة والنتيجة: <span class="blank-line" style="min-width: 75%;"></span></p>
+                </div>
+            </div>
+
+            <!-- Activity 5: Challenge / Enrichment -->
+            <div class="activity-card">
+                <div class="activity-header act-5">
+                    <span>نشاط (5): سؤال التحدي والإثراء للمتفوقين 🌟 [تحدي]</span>
+                    <span>[درجة واحدة]</span>
+                </div>
+                <div class="activity-body">
+                    <p>🧠 <strong>من أكون؟</strong> أنا عدد كلي أقع بين المليونين والثلاثة ملايين (2,000,000 و 3,000,000). رقم عشراتي أكبر من رقم آحادي بمقدار 5، ومجموع أرقامي الكلي يساوي 10، وجميع منازلي الأخرى أصفار باستثناء منزلة المئات ومنازل الملايين.</p>
+                    <p style="margin-top: 6px;">العدد هو: <span class="blank-line" style="min-width: 200px;"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>صفحة 1 من 2 - ورقة عمل تفاعلية</span>
+            <span>المعلم: أحمد فرخ - مبحث الرياضيات</span>
+            <span>الصف الخامس الأساسي</span>
+        </div>
+    </div>
+
+    <!-- Page 2: Answer Key & Teacher Guide -->
+    <div class="page">
+        <div>
+            <!-- Header Banner Page 2 -->
+            <div class="ribbon-header answer-key-header">
+                <div class="logo-badge-container">
+                    <div class="school-logo" style="color: var(--accent-green);">✔</div>
+                    <div class="header-titles">
+                        <h1>دليل المعلم ونموذج الإجابة المعياري</h1>
+                        <h2>حلول تفصيلية وسلالم التقييم للدرس الأول: القيمة المنزلية ضمن الملايين</h2>
+                    </div>
+                </div>
+                <div class="badge-rating">
+                    إعداد المعلم: أحمد فرخ<br>
+                    خاص بولي الأمر والمعلم
+                </div>
+            </div>
+
+            <!-- Guidelines Box -->
+            <div class="objectives-card" style="background: #e8f5e9; border-color: var(--accent-green);">
+                <h3 style="color: #2e7d32;">📌 إرشادات التصحيح والتغذية الراجعة:</h3>
+                <p style="font-size: 11.5px; color: #1b5e20;">
+                    تم إعداد هذا النموذج لتقديم إجابات نموذجية دقيقة لدعم التقييم التكويني. يُنصح بالتركيز على فهم الطالب للقيمة المنزلية والتمييز بين المنازل عند المقارنة والترتيب.
+                </p>
+            </div>
+
+            <!-- Solution 1 -->
+            <div class="activity-card">
+                <div class="activity-header act-1">
+                    <span>إجابة نشاط (1): جدول البيانات والقيمة المنزلية</span>
+                </div>
+                <div class="activity-body">
+                    <table class="pv-table">
+                        <thead>
+                            <tr>
+                                <th colspan="3" class="th-millions">دورة الملايين</th>
+                                <th colspan="3" class="th-thousands">دورة الألوف</th>
+                                <th colspan="3" class="th-ones">دورة الآحاد</th>
+                            </tr>
+                            <tr>
+                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
+                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
+                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="answer-text">
+                                <td>-</td><td>-</td><td>8</td>
+                                <td>7</td><td>4</td><td>2</td>
+                                <td>1</td><td>5</td><td>9</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 8px;">• القيمة المنزلية للرقم (7) هي: <span class="answer-text">700,000 (سبعمائة ألف)</span></p>
+                </div>
+            </div>
+
+            <!-- Solution 2 -->
+            <div class="activity-card">
+                <div class="activity-header act-2">
+                    <span>إجابة نشاط (2): التمثيل البصري والصيغ</span>
+                </div>
+                <div class="activity-body">
+                    <p>• <strong>الصيغة اللفظية:</strong> <span class="answer-text">ثلاثة ملايين وخمسُمائة وستة آلاف واثنا عشر.</span></p>
+                    <p style="margin-top: 6px;">• <strong>الصيغة التحليلية:</strong></p>
+                    <
