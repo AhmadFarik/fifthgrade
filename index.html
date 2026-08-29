@@ -1,774 +1,662 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دوسية الرياضيات التفاعلية المعتمدة - الصف الخامس الأساسي - الوحدة الأولى</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-blue: #1e88e5;
-            --primary-dark-blue: #1565c0;
-            --secondary-purple: #8e24aa;
-            --accent-orange: #fb8c00;
-            --accent-green: #43a047;
-            --accent-red: #e53935;
-            --bg-light: #eceff1;
-            --card-bg: #ffffff;
-            --text-dark: #2c3e50;
-        }
+<meta charset="UTF-8">
+<title>دوسية الفصل الأول كاملاً - الصف الخامس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-dark:#1e6b3e;
+    --green:#2e8b4f;
+    --green-light:#e8f5ec;
+    --green-mid:#a9d8b8;
+    --gold:#c9962c;
+    --ink:#1b2b1f;
+    --line:#bcdcc7;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Cairo',sans-serif;
+    color:var(--ink);
+    margin:0;
+    background:#f2f6f3;
+  }
+  .page{
+    width:210mm;
+    min-height:297mm;
+    margin:10mm auto;
+    background:#fff;
+    padding:14mm 14mm;
+    position:relative;
+    box-shadow:0 0 8px rgba(0,0,0,.15);
+    page-break-after:always;
+  }
+  /* ===== غلاف ===== */
+  .cover{
+    background:linear-gradient(180deg,var(--green-dark) 0%,var(--green) 45%,var(--green) 100%);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20mm;
+  }
+  .cover .badge{
+    background:#fff;
+    color:var(--green-dark);
+    border-radius:999px;
+    padding:6px 22px;
+    font-weight:800;
+    font-size:16px;
+    margin-bottom:24px;
+    letter-spacing:1px;
+  }
+  .cover h1{
+    font-size:44px;
+    font-weight:800;
+    margin:0 0 6px;
+    text-shadow:0 2px 4px rgba(0,0,0,.25);
+  }
+  .cover h2{
+    font-size:26px;
+    font-weight:600;
+    margin:0 0 30px;
+    color:#eafbee;
+  }
+  .cover .units{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin:20px 0 30px;
+    width:100%;
+    max-width:420px;
+  }
+  .cover .unit-chip{
+    background:rgba(255,255,255,.15);
+    border:2px solid rgba(255,255,255,.6);
+    border-radius:14px;
+    padding:14px 28px;
+    font-size:19px;
+    font-weight:700;
+  }
+  .cover .meta{
+    margin-top:40px;
+    font-size:15px;
+    background:rgba(0,0,0,.15);
+    border-radius:10px;
+    padding:14px 26px;
+    line-height:2;
+  }
+  .cover .deco{
+    position:absolute;
+    font-size:120px;
+    opacity:.12;
+    font-weight:800;
+  }
+  .cover .deco.d1{top:30px;right:30px;}
+  .cover .deco.d2{bottom:20px;left:30px;}
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-        }
+  /* ===== ترويسة صفحة داخلية ===== */
+  .head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:4px solid var(--green);
+    padding-bottom:8px;
+    margin-bottom:6mm;
+  }
+  .head .unit-title{
+    font-size:20px;
+    font-weight:800;
+    color:var(--green-dark);
+  }
+  .head .lesson-title{
+    font-size:15px;
+    font-weight:600;
+    color:var(--gold);
+    background:#fff6e8;
+    border:1px solid #eecf8f;
+    border-radius:8px;
+    padding:4px 12px;
+  }
+  .footer{
+    position:absolute;
+    bottom:8mm;
+    left:14mm;
+    right:14mm;
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    color:var(--green-dark);
+    border-top:1px solid var(--line);
+    padding-top:4px;
+  }
+  .footer .teacher-credit{
+    font-weight:700;
+    color:var(--gold);
+  }
 
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            padding: 20px 0;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-        }
+  /* ===== صفحة فاصل وحدة ===== */
+  .unit-divider{
+    background:var(--green-light);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-end;
+    text-align:right;
+    padding:20mm 18mm;
+  }
+  .unit-divider .num{
+    font-size:140px;
+    font-weight:800;
+    color:var(--green-mid);
+    line-height:1;
+    margin-bottom:-20px;
+  }
+  .unit-divider h1{
+    font-size:38px;
+    color:var(--green-dark);
+    font-weight:800;
+    margin:0 0 20px;
+    border-bottom:6px solid var(--gold);
+    padding-bottom:14px;
+    display:inline-block;
+  }
+  .unit-divider .lessons-list{
+    list-style:none;
+    padding:0;
+    margin:20px 0;
+  }
+  .unit-divider .lessons-list li{
+    font-size:18px;
+    font-weight:700;
+    color:var(--green-dark);
+    padding:10px 20px;
+    background:#fff;
+    border-radius:10px;
+    margin-bottom:10px;
+    border-right:6px solid var(--green);
+  }
+  .unit-divider .goal-box{
+    background:#fff;
+    border:2px dashed var(--green);
+    border-radius:14px;
+    padding:16px 20px;
+    font-size:14px;
+    line-height:1.9;
+    margin-top:16px;
+  }
+  .unit-divider .goal-box b{color:var(--green-dark);}
 
-        .page {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 15mm;
-            margin: 0 auto 25mm auto;
-            background: var(--card-bg);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
-            border-radius: 4px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+  /* ===== محتوى عمودين ===== */
+  .two-col{
+    columns:2;
+    column-gap:10mm;
+    column-rule:2px dashed var(--line);
+    font-size:14.5px;
+    line-height:1.85;
+  }
+  .q-block{
+    break-inside:avoid;
+    margin-bottom:9mm;
+    padding-bottom:6mm;
+    border-bottom:1px solid var(--line);
+  }
+  .q-num{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    background:var(--green);
+    color:#fff;
+    border-radius:50%;
+    font-size:13px;
+    font-weight:800;
+    margin-left:8px;
+  }
+  .q-text{font-weight:700;color:var(--ink);}
+  .q-sub{font-size:13px;color:#3a5a44;margin:4px 0 8px;}
+  .answer-line{
+    border-bottom:1.4px solid #7fa88c;
+    height:20px;
+    margin:6px 0;
+  }
+  .answer-box{
+    border:1.6px solid #7fa88c;
+    border-radius:6px;
+    height:60px;
+    margin-top:6px;
+    background:
+      repeating-linear-gradient(#fff,#fff 19px,#dcefe1 20px);
+  }
+  .mini-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    margin-top:6px;
+  }
+  .mini-grid .cell{
+    border:1.4px solid #7fa88c;
+    border-radius:5px;
+    height:34px;
+  }
+  .op-column{
+    font-family:'Amiri',serif;
+    font-size:20px;
+    direction:ltr;
+    text-align:right;
+    display:inline-block;
+    margin:6px 10px 0 0;
+    line-height:1.5;
+  }
+  .op-column .line{border-top:2px solid var(--ink);margin-top:2px;}
+  .word-problem{
+    background:var(--green-light);
+    border-radius:8px;
+    padding:8px 10px;
+    margin-top:4px;
+  }
+  .section-tag{
+    columns:1;
+    background:var(--green-dark);
+    color:#fff;
+    font-weight:800;
+    font-size:14px;
+    padding:6px 14px;
+    border-radius:8px;
+    margin:10px 0 8px;
+    display:inline-block;
+  }
+  .note-box{
+    columns:1;
+    background:#fff6e8;
+    border-right:5px solid var(--gold);
+    padding:8px 12px;
+    font-size:13px;
+    border-radius:6px;
+    margin-bottom:10px;
+    line-height:1.8;
+  }
 
-        /* Handwritten Red Grade Stamp on Corner */
-        .teacher-grade-stamp {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            border: 3px dashed var(--accent-red);
-            color: var(--accent-red);
-            padding: 8px 14px;
-            border-radius: 15px;
-            font-family: 'Reem Kufi', sans-serif;
-            font-size: 20px;
-            font-weight: bold;
-            transform: rotate(-12deg);
-            background: rgba(229, 57, 53, 0.05);
-            display: none;
-            z-index: 10;
-            box-shadow: 0 3px 10px rgba(229, 57, 53, 0.15);
-            pointer-events: none;
-        }
+  /* ===== صفحة الإجابات ===== */
+  .answers-page h1{
+    color:var(--green-dark);
+    font-size:26px;
+    border-bottom:4px solid var(--gold);
+    padding-bottom:8px;
+  }
+  .ans-two-col{
+    columns:3;
+    column-gap:8mm;
+    font-size:13px;
+    line-height:2.1;
+  }
+  .ans-unit-title{
+    columns:1;
+    background:var(--green);
+    color:#fff;
+    font-weight:800;
+    padding:5px 12px;
+    border-radius:6px;
+    margin:12px 0 6px;
+    display:inline-block;
+    font-size:14px;
+  }
+  .ans-item b{color:var(--green-dark);}
 
-        .ribbon-header {
-            position: relative;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ribbon-header::before, .ribbon-header::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            border-top: 8px solid #0d47a1;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-        }
-        .ribbon-header::before { right: 15px; }
-        .ribbon-header::after { left: 15px; }
-
-        .logo-badge-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .school-logo {
-            width: 45px;
-            height: 45px;
-            background: white;
-            color: var(--primary-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .header-titles h1 {
-            font-size: 18px;
-            font-weight: 900;
-            margin-bottom: 2px;
-        }
-
-        .header-titles h2 {
-            font-size: 12.5px;
-            font-weight: 500;
-            opacity: 0.9;
-        }
-
-        .badge-rating {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 11.5px;
-            font-weight: 700;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            text-align: center;
-        }
-
-        .student-info-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f1f8e9;
-            border: 1.5px solid var(--accent-green);
-            padding: 8px 15px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: #2e7d32;
-        }
-
-        .student-input {
-            border: 1px solid #81c784;
-            background: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 12px;
-            color: #2e7d32;
-        }
-
-        .objectives-card {
-            background: #fff8e1;
-            border: 1.5px solid var(--accent-orange);
-            border-radius: 8px;
-            padding: 10px 15px;
-            margin-bottom: 12px;
-        }
-
-        .objectives-card h3 {
-            color: #e65100;
-            font-size: 13.5px;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .objectives-list {
-            display: flex;
-            gap: 15px;
-            list-style: none;
-            font-size: 11.5px;
-            font-weight: 600;
-            color: #424242;
-        }
-
-        .objectives-list li::before {
-            content: "🎯 ";
-        }
-
-        .activity-card {
-            background: #ffffff;
-            border-radius: 8px;
-            border: 1px solid #cfd8dc;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            margin-bottom: 12px;
-            overflow: hidden;
-        }
-
-        .activity-header {
-            padding: 6px 12px;
-            color: white;
-            font-weight: 800;
-            font-size: 12.5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .act-1 { background: linear-gradient(90deg, var(--primary-blue), #42a5f5); }
-        .act-2 { background: linear-gradient(90deg, var(--secondary-purple), #ab47bc); }
-        .act-3 { background: linear-gradient(90deg, var(--accent-orange), #ffa726); }
-        .act-4 { background: linear-gradient(90deg, var(--accent-green), #66bb6a); }
-        .act-5 { background: linear-gradient(90deg, var(--accent-red), #ef5350); }
-
-        .activity-body {
-            padding: 10px 12px;
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        .pv-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 6px;
-            text-align: center;
-            font-size: 11px;
-        }
-
-        .pv-table th, .pv-table td {
-            border: 1px solid #b0bec5;
-            padding: 4px;
-        }
-
-        .pv-table th.th-millions { background-color: #bbdefb; color: #0d47a1; }
-        .pv-table th.th-thousands { background-color: #e1bee7; color: #4a148c; }
-        .pv-table th.th-ones { background-color: #ffe0b2; color: #e65100; }
-
-        input.ans-input {
-            width: 95%;
-            padding: 3px;
-            border: 1px solid #b0bec5;
-            border-radius: 4px;
-            text-align: center;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 11.5px;
-            background-color: #fafafa;
-            transition: all 0.2s;
-        }
-
-        input.ans-input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            background-color: #fff;
-            box-shadow: 0 0 4px rgba(30,136,229,0.3);
-        }
-
-        input.correct {
-            border-color: var(--accent-green) !important;
-            background-color: #e8f5e9 !important;
-            color: #2e7d32;
-            font-weight: bold;
-        }
-
-        input.incorrect {
-            border-color: var(--accent-red) !important;
-            background-color: #ffebee !important;
-            color: #c62828;
-            font-weight: bold;
-        }
-
-        select.ans-select {
-            padding: 4px 10px;
-            border-radius: 6px;
-            border: 1px solid #b0bec5;
-            font-family: 'Tajawal', sans-serif;
-            font-size: 12px;
-            background: #fff;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        select.correct { border-color: var(--accent-green); background: #e8f5e9; color: #2e7d32; }
-        select.incorrect { border-color: var(--accent-red); background: #ffebee; color: #c62828; }
-
-        .answer-key-header {
-            background: linear-gradient(135deg, var(--accent-green), #00695c) !important;
-        }
-
-        .comparison-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3px;
-        }
-
-        .student-val-badge {
-            background: #ffebee;
-            color: #c62828;
-            padding: 1px 6px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-        .student-val-badge.matched {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .correct-val-badge {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 1px 6px;
-            border-radius: 3px;
-            font-weight: bold;
-            border: 1px dotted #4caf50;
-        }
-
-        .control-panel {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 12px 20px;
-            border-radius: 35px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1000;
-            border: 2px solid var(--primary-blue);
-        }
-
-        .action-btn {
-            background: linear-gradient(135deg, #1e88e5, #1565c0);
-            color: white;
-            padding: 8px 18px;
-            border: none;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 14px rgba(0,0,0,0.25);
-        }
-
-        .action-btn.btn-check { background: linear-gradient(135deg, #43a047, #2e7d32); }
-        .action-btn.btn-reset { background: linear-gradient(135deg, #fb8c00, #e65100); }
-        .action-btn.btn-print { background: linear-gradient(135deg, #8e24aa, #6a1b9a); }
-
-        .score-display {
-            font-weight: 900;
-            font-size: 14px;
-            color: var(--primary-dark-blue);
-            background: #e3f2fd;
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid #90caf9;
-        }
-
-        .page-footer {
-            text-align: center;
-            font-size: 10px;
-            color: #78909c;
-            border-top: 1px solid #cfd8dc;
-            padding-top: 6px;
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        #answerKeyPage {
-            display: none;
-        }
-
-        @media print {
-            body { background: none; padding: 0; }
-            .page { box-shadow: none; margin: 0; width: 100%; min-height: 297mm; border-radius: 0; padding: 12mm; page-break-after: always; }
-            .control-panel, .no-print { display: none !important; }
-            input.ans-input { border: 1px solid #90a4ae; background-color: transparent; }
-            #answerKeyPage { display: flex !important; }
-        }
-    </style>
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none;margin:0;width:auto;min-height:auto;}
+  }
+</style>
 </head>
 <body>
 
-    <div class="control-panel no-print">
-        <div class="score-display" id="scoreBox">النتيجة: 0 / 17 إجابة</div>
-        <button class="action-btn btn-check" onclick="checkAnswers()">✨ تصحيح الإجابات</button>
-        <button class="action-btn btn-reset" onclick="resetAnswers()">🔄 مسح الكل</button>
-        <button class="action-btn btn-print" onclick="window.print()">🖨️ طباعة / PDF</button>
+<!-- ===================== غلاف ===================== -->
+<div class="page cover">
+  <div class="deco d1">٪×</div>
+  <div class="deco d2">÷+</div>
+  <div class="badge">الصف الخامس الأساسي — الفصل الدراسي الأول</div>
+  <h1>دوسية الرياضيات</h1>
+  <h2>الفصل الدراسي الأول كاملاً</h2>
+  <div class="units">
+    <div class="unit-chip">الوحدة الأولى: الأعداد</div>
+    <div class="unit-chip">الوحدة الثانية: الضرب</div>
+    <div class="unit-chip">الوحدة الثالثة: القسمة</div>
+    <div class="unit-chip">الوحدة الرابعة: خصائص الأعداد</div>
+    <div class="unit-chip">الوحدة الخامسة: الكسور والعمليات عليها</div>
+    <div class="unit-chip">الوحدة السادسة: تمثيل البيانات وتفسيرها</div>
+  </div>
+  <div class="meta">
+    إعداد المعلم: أحمد فضيل فرخ &nbsp;|&nbsp; وزارة التربية والتعليم — المملكة الأردنية الهاشمية<br>
+    أسئلة وتدريبات فقط — بلا حلول محلولة — مع مفتاح إجابات شامل في نهاية الدوسية
+  </div>
+</div>
+
+<!-- ===================== فاصل الوحدة الأولى ===================== -->
+<div class="page unit-divider">
+  <div class="num">1</div>
+  <h1>الوحدة الأولى: الأعداد</h1>
+  <ul class="lessons-list">
+    <li>الدرس الأول: القيمة المنزلية</li>
+    <li>الدرس الثاني: المقارنة والترتيب</li>
+    <li>الدرس الثالث: الجمع والطرح</li>
+    <li>الدرس الرابع: الأعداد السالبة</li>
+    <li>الدرس الخامس: خطة حل المسألة</li>
+  </ul>
+  <div class="goal-box">
+    <b>نواتج التعلم:</b> يتوقع من الطالب في نهاية هذه الوحدة أن يكون قادراً على قراءة الأعداد وكتابتها وتحديد القيمة المنزلية لأرقامها، ومقارنة الأعداد وترتيبها، وجمعها وطرحها، والتعرف على الأعداد السالبة، وتوظيف خطة حل المسألة.
+  </div>
+</div>
+
+<!-- ===================== الأعداد - صفحة 1: القيمة المنزلية والمقارنة والترتيب ===================== -->
+<div class="page">
+  <div class="head">
+    <div class="unit-title">الوحدة الأولى: الأعداد</div>
+    <div class="lesson-title">الدرسان 1 و2: القيمة المنزلية — المقارنة والترتيب</div>
+  </div>
+
+  <div class="two-col">
+    <div class="section-tag">القيمة المنزلية</div>
+
+    <div class="q-block">
+      <span class="q-num">1</span><span class="q-text">اكتب العدد 452,318 بالصيغة اللفظية والصيغة التحليلية:</span>
+      <div class="answer-box"></div>
     </div>
 
-    <!-- Page 1 -->
-    <div class="page" id="page1">
-        <div class="teacher-grade-stamp" id="gradeStamp"></div>
-        <div>
-            <div class="ribbon-header">
-                <div class="logo-badge-container">
-                    <div class="school-logo">📐</div>
-                    <div class="header-titles">
-                        <h1>الوحدة الأولى: الدرس الأول - القيمة المنزلية ضمن الملايين</h1>
-                        <h2>مادة الرياضيات | الصف الخامس الأساسي - الفصل الدراسي الأول</h2>
-                    </div>
-                </div>
-                <div class="badge-rating">إعداد المعلم: أحمد فرخ<br>⭐⭐⭐⭐⭐ تقييم إثرائي</div>
-            </div>
-
-            <div class="student-info-bar">
-                <span>اسم الطالب/ة: <input type="text" id="studentNameInput" class="student-input" style="width: 220px;" placeholder="اكتب اسمك الثلاثي..."></span>
-                <span>الشعبة: <input type="text" id="studentSectionInput" class="student-input" style="width: 60px;" placeholder="5أ"></span>
-                <span>التاريخ: <input type="text" id="studentDateInput" class="student-input" style="width: 100px;" value="2026/09/01"></span>
-            </div>
-
-            <div class="objectives-card">
-                <h3>🎯 أهداف الدرس المعيارية:</h3>
-                <ul class="objectives-list">
-                    <li>يحدد القيمة المنزلية لرقم في عدد ضمن الملايين.</li>
-                    <li>يقرأ الأعداد ضمن الملايين ويكتبها بالصيغ المختلفة.</li>
-                    <li>يقارن الأعداد الكبيرة ويرتبها بدقة متناهية.</li>
-                </ul>
-            </div>
-
-            <!-- Activity 1 -->
-            <div class="activity-card">
-                <div class="activity-header act-1">
-                    <span>نشاط (1): جدول البيانات والقيمة المنزلية</span>
-                    <span>[8 درجات]</span>
-                </div>
-                <div class="activity-body">
-                    <p>أفرغ العدد <strong>(8,742,159)</strong> في جدول القيمة المنزلية:</p>
-                    <table class="pv-table">
-                        <thead>
-                            <tr>
-                                <th colspan="3" class="th-millions">دورة الملايين</th>
-                                <th colspan="3" class="th-thousands">دورة الألوف</th>
-                                <th colspan="3" class="th-ones">دورة الآحاد</th>
-                            </tr>
-                            <tr>
-                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
-                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
-                                <th>مئات</th><th>عشرات</th><th>آحاد</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="text" class="ans-input" data-answer="-" value="-" disabled style="background:#eceff1;"></td>
-                                <td><input type="text" class="ans-input" data-answer="-" value="-" disabled style="background:#eceff1;"></td>
-                                <td><input type="text" class="ans-input" data-answer="8" placeholder="?"></td>
-                                <td><input type="text" class="ans-input" data-answer="7" placeholder="?"></td>
-                                <td><input type="text" class="ans-input" data-answer="4" placeholder="?"></td>
-                                <td><input type="text" class="ans-input" data-answer="2" placeholder="?"></td>
-                                <td><input type="text" class="ans-input" data-answer="1" placeholder="?"></td>
-                                <td><input type="text" class="ans-input" data-answer="5" placeholder="?"></td>
-                                <td><input type="text" class="ans-input" data-answer="9" placeholder="?"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p style="margin-top: 6px;">• القيمة المنزلية للرقم <strong>(7)</strong> هي: <input type="text" class="ans-input" data-answer="700000" style="width: 180px; display:inline-block;" placeholder="اكتب العدد..."></p>
-                </div>
-            </div>
-
-            <!-- Activity 2 -->
-            <div class="activity-card">
-                <div class="activity-header act-2">
-                    <span>نشاط (2): التمثيل البصري والتعبير بالصيغ</span>
-                    <span>[5 درجات]</span>
-                </div>
-                <div class="activity-body">
-                    <p>للعدد: <strong>(3,506,012)</strong></p>
-                    <p style="margin-top: 4px;">• <strong>الصيغة اللفظية:</strong> <input type="text" class="ans-input" data-answer="ثلاثة ملايين وخمسمائة وستة آلاف واثنا عشر" style="width: 70%; display:inline-block;" placeholder="اكتب الصيغة اللفظية..."></p>
-                    <p style="margin-top: 5px;">• <strong>الصيغة التحليلية:</strong></p>
-                    <p style="direction: ltr; text-align: right; margin-top: 4px; font-weight: bold; color: var(--secondary-purple);">
-                        3,506,012 = 2 + <input type="text" class="ans-input" data-answer="10" style="width: 50px;"> + 0 + <input type="text" class="ans-input" data-answer="6000" style="width: 65px;"> + 0 + <input type="text" class="ans-input" data-answer="500000" style="width: 75px;"> + <input type="text" class="ans-input" data-answer="3000000" style="width: 85px;">
-                    </p>
-                </div>
-            </div>
-
-            <!-- Activity 3 -->
-            <div class="activity-card">
-                <div class="activity-header act-3">
-                    <span>نشاط (3): المقارنة والترتيب</span>
-                    <span>[2 درجات]</span>
-                </div>
-                <div class="activity-body">
-                    <div style="display: flex; justify-content: space-around; font-weight: bold; align-items: center;">
-                        <div>5,412,900 
-                            <select class="ans-select" data-answer="<">
-                                <option value="">اختر</option>
-                                <option value=">">&gt;</option>
-                                <option value="<">&lt;</option>
-                                <option value="=">=</option>
-                            </select> 
-                        5,421,000</div>
-                        <div>9,000,000 
-                            <select class="ans-select" data-answer=">">
-                                <option value="">اختر</option>
-                                <option value=">">&gt;</option>
-                                <option value="<">&lt;</option>
-                                <option value="=">=</option>
-                            </select> 
-                        8,999,999</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Activity 4 -->
-            <div class="activity-card">
-                <div class="activity-header act-4">
-                    <span>نشاط (4): رياضيات في حياتنا</span>
-                    <span>[درجة واحدة]</span>
-                </div>
-                <div class="activity-body">
-                    <p>🌲 زار محمية ضانا في العام الأول <strong>1,250,400</strong> سائح، وفي العام الثاني <strong>1,205,900</strong> سائح. أيهما أكبر؟</p>
-                    <p style="margin-top: 4px;">الإجابة: <input type="text" class="ans-input" data-answer="العام الأول" style="width: 70%; display:inline-block;" placeholder="العام الأول..."></p>
-                </div>
-            </div>
-
-            <!-- Activity 5 -->
-            <div class="activity-card">
-                <div class="activity-header act-5">
-                    <span>نشاط (5): سؤال التحدي والإثراء للمتفوقين 🌟</span>
-                    <span>[درجة واحدة]</span>
-                </div>
-                <div class="activity-body">
-                    <p>🧠 عدد بين 2,000,000 و 3,000,000. عشراتي أكبر من آحادي بـ 5، ومجموع أرقامي 10، ومنازلي الأخرى أصفار ما عدا المئات والملايين.</p>
-                    <p style="margin-top: 4px;">العدد هو: <input type="text" class="ans-input" data-answer="2,005,032" style="width: 150px; display:inline-block;" placeholder="اكتب العدد..."></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="page-footer">
-            <span>صفحة 1 من 2 - ورقة عمل تفاعلية ذكية</span>
-            <span>المعلم: أحمد فرخ</span>
-            <span>الصف الخامس الأساسي</span>
-        </div>
+    <div class="q-block">
+      <span class="q-num">2</span><span class="q-text">حدد القيمة المنزلية للرقم الذي تحته خط في كل عدد:</span>
+      <div class="q-sub">
+        أ) 4<u>5</u>2,318 → القيمة المنزلية: ______<br>
+        ب) <u>7</u>39,204 → القيمة المنزلية: ______<br>
+        ج) 601,<u>9</u>85 → القيمة المنزلية: ______
+      </div>
     </div>
 
-    <!-- Page 2 (Answer Key & Comparison) -->
-    <div class="page" id="answerKeyPage">
-        <div>
-            <div class="ribbon-header answer-key-header">
-                <div class="logo-badge-container">
-                    <div class="school-logo" style="color: var(--accent-green);">✔</div>
-                    <div class="header-titles">
-                        <h1>دليل المعلم ونموذج الإجابة المعياري ومقارنة إجابات الطالب</h1>
-                        <h2>تفاصيل الحلول والفروقات بين إجابتك والإجابة النموذجية</h2>
-                    </div>
-                </div>
-                <div class="badge-rating">إعداد المعلم: أحمد فرخ<br>خاص بولي الأمر والمعلم</div>
-            </div>
-
-            <div class="objectives-card" style="background: #e8f5e9; border-color: var(--accent-green);">
-                <h3 style="color: #2e7d32;">📌 تقرير تفصيلي بأداء الطالب ومقارنة الإجابات:</h3>
-                <p style="font-size: 11.5px; color: #1b5e20;">يوضح هذا الجدول ما قمت بكتابته مقارنة بالنموذج المعتمد، لتحديد نقاط القوة ومواقع التحسين بدقة متناهية.</p>
-            </div>
-
-            <div id="comparisonContainer">
-                <!-- سيتم تعبئة المقارنة ديناميكياً عبر الجافاسكريبت بعد التصحيح -->
-            </div>
-        </div>
-        <div class="page-footer">
-            <span>صفحة 2 من 2 - دليل الحلول والمقارنة</span>
-            <span>المعلم: أحمد فرخ</span>
-            <span>الصف الخامس</span>
-        </div>
+    <div class="q-block">
+      <span class="q-num">3</span><span class="q-text">اكتب العدد المكوّن من: 3 في منزلة مئات الألوف، 8 في منزلة عشرات الألوف، 0 في منزلة الألوف، 5 في منزلة المئات، 1 في منزلة العشرات، 6 في منزلة الآحاد:</span>
+      <div class="answer-line"></div>
     </div>
 
-    <script>
-        function cleanText(str) {
-            if (!str) return "";
-            return str.trim()
-                .replace(/[\s,،]/g, "")
-                .replace(/[ةه]/g, "ه")
-                .replace(/[أإآا]/g, "ا")
-                .replace(/[ىي]/g, "ي");
-        }
+    <div class="section-tag">مقارنة الأعداد وترتيبها</div>
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const allElements = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled]), .page:nth-of-type(1) .ans-select, .student-input');
-            
-            allElements.forEach((el, index) => {
-                const savedVal = localStorage.getItem(`math_input_${index}`);
-                if (savedVal !== null) {
-                    el.value = savedVal;
-                }
+    <div class="q-block">
+      <span class="q-num">4</span><span class="q-text">ضع الإشارة المناسبة (&gt; أو &lt; أو =):</span>
+      <div class="q-sub">
+        أ) 452,318 ___ 452,381<br>
+        ب) 89,204 ___ 89,204<br>
+        ج) 601,985 ___ 610,985
+      </div>
+    </div>
 
-                el.addEventListener('input', () => {
-                    localStorage.setItem(`math_input_${index}`, el.value);
-                });
-                el.addEventListener('change', () => {
-                    localStorage.setItem(`math_input_${index}`, el.value);
-                });
-            });
-            
-            updateTotalCount();
-        });
+    <div class="q-block">
+      <span class="q-num">5</span><span class="q-text">رتّب الأعداد التالية تصاعدياً:</span>
+      <div class="q-sub">45,230 &nbsp; 45,032 &nbsp; 54,230 &nbsp; 45,320</div>
+      <div class="answer-line"></div>
+    </div>
 
-        function updateTotalCount() {
-            const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled])');
-            const selects = document.querySelectorAll('.page:nth-of-type(1) .ans-select');
-            const total = inputs.length + selects.length;
-            const scoreBox = document.getElementById('scoreBox');
-            scoreBox.innerHTML = `النتيجة: 0 / ${total} إجابة`;
-        }
+    <div class="q-block">
+      <span class="q-num">6</span><span class="q-text">رتّب الأعداد التالية تنازلياً:</span>
+      <div class="q-sub">128,450 &nbsp; 128,045 &nbsp; 182,450 &nbsp; 128,540</div>
+      <div class="answer-line"></div>
+    </div>
 
-        function checkAnswers() {
-            let score = 0;
-            let totalInputs = 0;
-            let comparisonHTML = "";
+    <div class="q-block">
+      <span class="q-num">7</span><span class="q-text">مسألة حياتية:</span>
+      <div class="word-problem">
+        سجّلت ثلاث مدارس أعداد طلابها كالتالي: مدرسة أ: 1,245 طالباً، مدرسة ب: 1,425 طالباً، مدرسة ج: 1,254 طالباً. رتّب المدارس حسب عدد طلابها من الأكبر إلى الأصغر.
+      </div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
 
-            const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled])');
-            const selects = document.querySelectorAll('.page:nth-of-type(1) .ans-select');
+  <div class="footer">
+    <span class="teacher-credit">إعداد المعلم: أحمد فضيل فرخ</span>
+    <span>صفحة 3</span>
+  </div>
+</div>
 
-            const itemLabels = [
-                "نشاط (1): جدول القيمة المنزلية - خانة آحاد الملايين (الرقم 8)",
-                "نشاط (1): جدول القيمة المنزلية - خانة مئات الألوف (الرقم 7)",
-                "نشاط (1): جدول القيمة المنزلية - خانة عشرات الألوف (الرقم 4)",
-                "نشاط (1): جدول القيمة المنزلية - خانة آحاد الألوف (الرقم 2)",
-                "نشاط (1): جدول القيمة المنزلية - خانة مئات الآحاد (الرقم 1)",
-                "نشاط (1): جدول القيمة المنزلية - خانة عشرات الآحاد (الرقم 5)",
-                "نشاط (1): جدول القيمة المنزلية - خانة آحاد الآحاد (الرقم 9)",
-                "نشاط (1): القيمة المنزلية للرقم 7",
-                "نشاط (2): الصيغة اللفظية للعدد 3,506,012",
-                "نشاط (2): الصيغة التحليلية (قيمة العشرات = 10)",
-                "نشاط (2): الصيغة التحليلية (قيمة مئات الألوف = 6000)",
-                "نشاط (2): الصيغة التحليلية (قيمة عشرات الملايين / مئات الملايين الخطأ الشائع = 500000)",
-                "نشاط (2): الصيغة التحليلية (قيمة الملايين = 3000000)",
-                "نشاط (3): المقارنة الأولى (5,412,900 و 5,421,000)",
-                "نشاط (3): المقارنة الثانية (9,000,000 و 8,999,999)",
-                "نشاط (4): مسألة محمية ضانا (العام الأكبر)",
-                "نشاط (5): سؤال التحدي والإثراء للمتفوقين"
-            ];
+<!-- ===================== الأعداد - صفحة 2: الجمع والطرح ===================== -->
+<div class="page">
+  <div class="head">
+    <div class="unit-title">الوحدة الأولى: الأعداد</div>
+    <div class="lesson-title">الدرس الثالث: الجمع والطرح</div>
+  </div>
 
-            let globalIdx = 0;
+  <div class="two-col">
+    <div class="section-tag">جمع الأعداد</div>
 
-            inputs.forEach(input => {
-                totalInputs++;
-                const userValRaw = input.value.trim();
-                const correctValRaw = input.getAttribute('data-answer');
-                const label = itemLabels[globalIdx] || `السؤال رقم ${totalInputs}`;
+    <div class="q-block">
+      <span class="q-num">1</span><span class="q-text">أوجد ناتج الجمع بالعمود:</span>
+      <div class="op-column">
+        &nbsp;45,238<br>+ 27,654<br><span class="line">&nbsp;</span>
+      </div>
+      <div class="op-column">
+        &nbsp;68,921<br>+ 15,489<br><span class="line">&nbsp;</span>
+      </div>
+    </div>
 
-                let isCorrect = false;
-                if (userValRaw !== "") {
-                    const userVal = cleanText(userValRaw);
-                    const correctVal = cleanText(correctValRaw);
-                    if (userVal === correctVal || userVal.toLowerCase() === correctVal.toLowerCase()) {
-                        isCorrect = true;
-                    }
-                }
+    <div class="q-block">
+      <span class="q-num">2</span><span class="q-text">جد ناتج الجمع:</span>
+      <div class="q-sub">
+        أ) 34,502 + 18,769 = ______<br>
+        ب) 456,301 + 289,458 = ______
+      </div>
+    </div>
 
-                if (isCorrect) {
-                    input.classList.remove('incorrect');
-                    input.classList.add('correct');
-                    score++;
-                } else {
-                    input.classList.remove('correct');
-                    input.classList.add('incorrect');
-                }
+    <div class="section-tag">طرح الأعداد</div>
 
-                const displayUserVal = userValRaw === "" ? "فارغ (لم يتم الحل)" : userValRaw;
-                const matchClass = isCorrect ? "matched" : "";
-                comparisonHTML += `
-                    <div class="activity-card" style="margin-bottom: 8px;">
-                        <div class="activity-header" style="background: ${isCorrect ? 'var(--accent-green)' : 'var(--accent-red)'}; padding: 4px 10px; font-size: 11.5px;">
-                            <span>${label}</span>
-                            <span>${isCorrect ? '✔ إجابة صحيحة' : '✖ إجابة خاطئة'}</span>
-                        </div>
-                        <div class="activity-body" style="padding: 6px 10px; font-size: 11px;">
-                            <div class="comparison-item">
-                                <span>إجابتك: <span class="student-val-badge ${matchClass}">${displayUserVal}</span></span>
-                                <span>الدليل المعياري: <span class="correct-val-badge">${correctValRaw}</span></span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                globalIdx++;
-            });
+    <div class="q-block">
+      <span class="q-num">3</span><span class="q-text">أوجد ناتج الطرح بالعمود:</span>
+      <div class="op-column">
+        &nbsp;72,340<br>− 38,517<br><span class="line">&nbsp;</span>
+      </div>
+      <div class="op-column">
+        &nbsp;90,004<br>− 56,278<br><span class="line">&nbsp;</span>
+      </div>
+    </div>
 
-            selects.forEach(sel => {
-                totalInputs++;
-                const userVal = sel.value.trim();
-                const correctVal = sel.getAttribute('data-answer').trim();
-                const label = itemLabels[globalIdx] || `السؤال رقم ${totalInputs}`;
+    <div class="q-block">
+      <span class="q-num">4</span><span class="q-text">جد ناتج الطرح، ثم تحقق من صحة الحل بالجمع:</span>
+      <div class="q-sub">83,451 − 47,269 = ______ &nbsp;&nbsp; التحقق: ______ + 47,269 = 83,451</div>
+    </div>
 
-                let isCorrect = false;
-                if (userVal !== "" && userVal === correctVal) {
-                    isCorrect = true;
-                }
+    <div class="q-block">
+      <span class="q-num">5</span><span class="q-text">مسألة حياتية:</span>
+      <div class="word-problem">
+        باع تاجر 24,650 ديناراً من البضاعة في الشهر الأول، و31,875 ديناراً في الشهر الثاني. ما مجموع مبيعات الشهرين؟
+      </div>
+      <div class="answer-box"></div>
+    </div>
 
-                if (isCorrect) {
-                    sel.classList.remove('incorrect');
-                    sel.classList.add('correct');
-                    score++;
-                } else {
-                    sel.classList.remove('correct');
-                    sel.classList.add('incorrect');
-                }
+    <div class="q-block">
+      <span class="q-num">6</span><span class="q-text">مسألة حياتية:</span>
+      <div class="word-problem">
+        كان عدد سكان بلدة 58,420 نسمة، فانتقل منها 12,650 نسمة إلى بلدة أخرى. كم أصبح عدد سكان البلدة؟
+      </div>
+      <div class="answer-box"></div>
+    </div>
 
-                const displayUserVal = userVal === "" ? "فارغ (لم يتم الحل)" : userVal;
-                const matchClass = isCorrect ? "matched" : "";
-                comparisonHTML += `
-                    <div class="activity-card" style="margin-bottom: 8px;">
-                        <div class="activity-header" style="background: ${isCorrect ? 'var(--accent-green)' : 'var(--accent-red)'}; padding: 4px 10px; font-size: 11.5px;">
-                            <span>${label}</span>
-                            <span>${isCorrect ? '✔ إجابة صحيحة' : '✖ إجابة خاطئة'}</span>
-                        </div>
-                        <div class="activity-body" style="padding: 6px 10px; font-size: 11px;">
-                            <div class="comparison-item">
-                                <span>إجابتك: <span class="student-val-badge ${matchClass}">${displayUserVal}</span></span>
-                                <span>الدليل المعياري: <span class="correct-val-badge">${correctVal}</span></span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                globalIdx++;
-            });
+    <div class="q-block">
+      <span class="q-num">7</span><span class="q-text">مسألة مركّبة (جمع وطرح معاً):</span>
+      <div class="word-problem">
+        لدى مصنع 125,000 قطعة، أنتج خلال الأسبوع 38,400 قطعة إضافية، ثم صدّر 96,750 قطعة. كم قطعة تبقّت لدى المصنع؟
+      </div>
+      <div class="answer-box"></div>
+    </div>
+  </div>
 
-            const ansKeyPage = document.getElementById('answerKeyPage');
-            ansKeyPage.style.display = 'flex';
-            document.getElementById('comparisonContainer').innerHTML = comparisonHTML;
+  <div class="footer">
+    <span class="teacher-credit">إعداد المعلم: أحمد فضيل فرخ</span>
+    <span>صفحة 4</span>
+  </div>
+</div>
 
-            const gradeStamp = document.getElementById('gradeStamp');
-            gradeStamp.style.display = 'block';
-            gradeStamp.innerHTML = `النتيجة: ${score} / ${totalInputs}`;
+<!-- ===================== الأعداد - صفحة 3: الأعداد السالبة وخطة حل المسألة ===================== -->
+<div class="page">
+  <div class="head">
+    <div class="unit-title">الوحدة الأولى: الأعداد</div>
+    <div class="lesson-title">الدرسان 4 و5: الأعداد السالبة — خطة حل المسألة</div>
+  </div>
 
-            const scoreBox = document.getElementById('scoreBox');
-            scoreBox.innerHTML = `🌟 نتيجتك: ${score} / ${totalInputs} إجابة صحيحة`;
-            
-            if (score === totalInputs) {
-                alert("🎉 أبدعت يا بطل! جميع إجاباتك صحيحة 100% وتم إظهار دليل الإجابة ومقارنة الحلول في الصفحة الثانية.");
-            } else {
-                alert(`⚠️ لقد أجبت بشكل صحيح على ${score} من أصل ${totalInputs}. تم إظهار تفاصيل الحلول والفرق في الصفحة الثانية (دليل الإجابة).`);
-            }
-        }
+  <div class="two-col">
+    <div class="section-tag">الأعداد السالبة</div>
+    <div class="note-box">
+      <b>تذكّر:</b> الأعداد السالبة تقع إلى يسار الصفر على خط الأعداد، وتُستخدم للتعبير عن درجات الحرارة تحت الصفر، والارتفاع تحت سطح البحر، والديون.
+    </div>
 
-        function resetAnswers() {
-            if (confirm("هل أنت متأكد من مسح جميع الإجابات وإعادة التعيين؟")) {
-                const inputs = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled])');
-                inputs.forEach(input => {
-                    input.value = "";
-                    input.classList.remove('correct', 'incorrect');
-                });
-                const selects = document.querySelectorAll('.page:nth-of-type(1) .ans-select');
-                selects.forEach(sel => {
-                    sel.value = "";
-                    sel.classList.remove('correct', 'incorrect');
-                });
-                
-                const allElements = document.querySelectorAll('.page:nth-of-type(1) .ans-input:not([disabled]), .page:nth-of-type(1) .ans-select, .student-input');
-                allElements.forEach((el, index) => {
-                    localStorage.removeItem(`math_input_${index}`);
-                });
+    <div class="q-block">
+      <span class="q-num">1</span><span class="q-text">مثّل الأعداد التالية على خط الأعداد:</span>
+      <div class="q-sub">3− &nbsp; 5 &nbsp; 2− &nbsp; 4</div>
+      <div class="answer-box"></div>
+    </div>
 
-                document.getElementById('answerKeyPage').style.display = 'none';
-                document.getElementById('gradeStamp').style.display = 'none';
+    <div class="q-block">
+      <span class="q-num">2</span><span class="q-text">اكتب العدد الصحيح المناسب للموقف:</span>
+      <div class="q-sub">
+        أ) درجة الحرارة 7 تحت الصفر: ______<br>
+        ب) ارتفاع 120 متراً فوق سطح البحر: ______<br>
+        ج) عمق 30 متراً تحت سطح البحر: ______
+      </div>
+    </div>
 
-                updateTotalCount();
-            }
-        }
-    </script>
-</body>
-</html>
-"""
+    <div class="q-block">
+      <span class="q-num">3</span><span class="q-text">رتّب الأعداد التالية تصاعدياً:</span>
+      <div class="q-sub">2− &nbsp; 5 &nbsp; 4− &nbsp; 0 &nbsp; 1</div>
+      <div class="answer-line"></div>
+    </div>
 
-with open("interactive_math_sheet.html", "w", encoding="utf-8") as f:
-    f.write(code_output)
+    <div class="q-block">
+      <span class="q-num">4</span><span class="q-text">ضع الإشارة المناسبة (&gt; أو &lt;):</span>
+      <div class="q-sub">
+        أ) 3− ___ 1<br>
+        ب) 5− ___ 2−<br>
+        ج) 0 ___ 4−
+      </div>
+    </div>
 
-print("Final HTML generated.")
+    <div class="section-tag">خطة حل المسألة</div>
+    <div class="note-box">
+      <b>خطوات حل المسألة:</b> (1) افهم المسألة (2) خطط لطريقة الحل (3) نفّذ الخطة (4) تحقق من صحة الحل.
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">5</span><span class="q-text">طبّق خطة حل المسألة على المسألة التالية:</span>
+      <div class="word-problem">
+        كان رصيد حساب أحد المزارعين 45,000 دينار، سحب منه 18,500 ديناراً لشراء بذور، ثم أودع 12,300 ديناراً من بيع محصول سابق. ما رصيد الحساب الآن؟
+      </div>
+      <div class="q-sub">
+        أفهم: ماذا أعرف؟ __________________________<br>
+        أخطط: ما العملية المناسبة؟ __________________________<br>
+        أنفّذ: __________________________<br>
+        أتحقق: __________________________
+      </div>
+      <div class="answer-box"></div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">6</span><span class="q-text">مسألة إثرائية (تحدٍّ):</span>
+      <div class="word-problem">
+        فكّر في عددين صحيحين ناتج جمعهما 3 وناتج طرحهما 11−. ما هذان العددان؟ (لمحة: أحدهما سالب)
+      </div>
+      <div class="answer-line"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="teacher-credit">إعداد المعلم: أحمد فضيل فرخ</span>
+    <span>صفحة 5</span>
+  </div>
+</div>
+
+<!-- ===================== فاصل الوحدة الثانية ===================== -->
+<div class="page unit-divider">
+  <div class="num">2</div>
+  <h1>الوحدة الثانية: الضرب</h1>
+  <ul class="lessons-list">
+    <li>الدرس الأول: ضرب الأعداد في مضاعفات 10 و100 و1000</li>
+    <li>الدرس الثاني: تقدير ناتج الضرب</li>
+    <li>الدرس الثالث: ضرب عدد من رقمين × عدد من رقم واحد</li>
+    <li>الدرس الرابع: ضرب عدد من ثلاثة أرقام × عدد من رقم واحد</li>
+    <li>الدرس الخامس: ضرب عدد من رقمين × عدد من رقمين</li>
+    <li>الدرس السادس: خصائص عملية الضرب وحل المسألة</li>
+  </ul>
+  <div class="goal-box">
+    <b>نواتج التعلم:</b> يتوقع من الطالب في نهاية هذه الوحدة أن يكون قادراً على ضرب الأعداد الطبيعية باستخدام الضرب المطوّل، وتقدير النواتج، وتطبيق خصائص الضرب، وحل مسائل حياتية تتعلق بالضرب.
+  </div>
+</div>
+
+<!-- ===================== الضرب - صفحة 1: مضاعفات 10/100/1000 وتقدير الناتج ===================== -->
+<div class="page">
+  <div class="head">
+    <div class="unit-title">الوحدة الثانية: الضرب</div>
+    <div class="lesson-title">الدرسان 1 و2: مضاعفات 10،100،1000 — وتقدير الناتج</div>
+  </div>
+
+  <div class="two-col">
+    <div class="section-tag">أولاً: الضرب في مضاعفات 10</div>
+
+    <div class="q-block">
+      <span class="q-num">1</span><span class="q-text">أكمل جدول الضرب التالي:</span>
+      <div class="mini-grid">
+        <div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div>
+      </div>
+      <div class="q-sub">45 × 10 = ___&nbsp;&nbsp;&nbsp; 45 × 100 = ___&nbsp;&nbsp;&nbsp; 45 × 1000 = ___&nbsp;&nbsp;&nbsp; 8 × 600 = ___</div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">2</span><span class="q-text">جد ناتج كل مما يأتي:</span>
+      <div class="q-sub">
+        أ) 70 × 20 = ______<br>
+        ب) 300 × 40 = ______<br>
+        ج) 9000 × 5 = ______<br>
+        د) 12 × 100 = ______
+      </div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">3</span><span class="q-text">ضع العدد المناسب في الفراغ:</span>
+      <div class="q-sub">
+        6 × ____ = 6000&nbsp;&nbsp;&nbsp;&nbsp; ____ × 10 = 920
+      </div>
+      <div class="answer-line"></div>
+    </div>
+
+    <div class="section-tag">ثانياً: تقدير ناتج الضرب</div>
+    <div class="note-box">
+      <b>تذكّر:</b> لتقدير ناتج الضرب، قرّب كل عدد إلى أقرب منزلة عشرية مناسبة، ثم اضرب الأعداد المقرَّبة.
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">4</span><span class="q-text">قدّر ناتج الضرب بتقريب كل عدد إلى أقرب عشرة:</span>
+      <div class="q-sub">43 × 28 ≈ ______ × ______ = ______</div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">5</span><span class="q-text">قدّر ناتج الضرب بتقريب كل عدد إلى أقرب مئة:</span>
+      <div class="q-sub">389 × 214 ≈ ______</div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">6</span><span class="q-text">مسألة حياتية:</span>
+      <div class="word-problem">
+        يعمل مصنع على تعبئة العصير في علب، إذا كانت كل كرتونة تحتوي على 29 علبة تقريباً 30، ولدى المصنع 196 كرتونة تقريباً 200، قدّر عدد العلب الكلي.
+      </div>
+      <div class="answer-line"></div>
+    </div>
+
+    <div class="q-block">
+      <span class="q-num">7</span><span class="q-text">ضع علامة (✓) أمام التقدير الأقرب لناتج 58 × 41:</span>
+      <div class="q-sub">
+        (      ) 2000&nbsp;&nbsp;&nbsp; (      ) 2400&nbsp;&nbsp;&nbsp; (      ) 3000
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="teacher-credit">إعداد المعلم: أحم
